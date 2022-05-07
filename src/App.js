@@ -56,9 +56,8 @@ function App() {
     redirectUri: "http://localhost:3000",
   });
 
-  const [a, setA] = useState(1);
+  // eslint-disable-next-line
   const [errorMessage, setErrorMessage] = useState("This is the error message");
-  const [whileWaitingForUAUTH, setWhileWaitingForUAUTH] = useState(false);
 
   const handleLoginButtonClick = (e) => {
     setErrorMessage(null);
@@ -69,12 +68,15 @@ function App() {
 
     setImageSrc(pressedButton);
   };
-
+  // eslint-disable-next-line
   const [redirectTo, setRedirectTo] = useState();
+  // eslint-disable-next-line
   const [user, setUser] = useState();
+  // eslint-disable-next-line
   const [loading, setLoading] = useState(false);
+  // eslint-disable-next-line
   const [redirectToLogOut, setRedirectToLogOut] = useState();
-
+  // eslint-disable-next-line
   const [udLoginAddress, setUdLoginAddress] = useState();
   const [udLoginDomain, setUdLoginDomain] = useState();
 
@@ -97,7 +99,7 @@ function App() {
       .catch((error) => {
         console.error("callback error:", error);
         setRedirectTo("/login?error=" + error.message);
-      });
+      }); // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -107,9 +109,9 @@ function App() {
       .catch((error) => {
         console.error("profile error:", error);
         setRedirectToLogOut("/login?error=" + error.message);
-      });
+      }); // eslint-disable-next-line
   }, []);
-
+  // eslint-disable-next-line
   const handleLogoutButtonClick = (e) => {
     console.log("logging out!");
     setLoading(true);
@@ -559,6 +561,7 @@ function App() {
           className="text-center"
           style={{ paddingTop: "28vh", marginRight: "5vw" }}
         > */
+  // eslint-disable-next-line
   {
     /* <img src={logo}></img> */
   }
