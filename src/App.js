@@ -23,12 +23,102 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import theme from "./Components/theme/theme";
 
+// Unstoppable Domains
+import UAuth from "@uauth/js";
+
+// import button images
+import defaultButton from "./default-button.png";
+import pressedButton from "./hover-button.png";
+import hoverButton from "./pressed-button.png";
 // const {utils, BigNumber} = require('ethers');
 
 function App() {
-  //contract addresses
-  /*  const nftmarketaddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
-  const ContractAddress[4].NftMarketPlace = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512"; */
+  const [imageSrc, setImageSrc] = useState(defaultButton);
+  function handleMouseEnter() {
+    setImageSrc(hoverButton);
+  }
+
+  function handleMouseLeave() {
+    setImageSrc(defaultButton);
+  }
+
+  const uauth = new UAuth({
+    // These can be copied from the bottom of your app's configuration page on unstoppabledomains.com.
+    clientID: process.env.REACT_APP_CLIENT_ID_UD,
+    clientSecret: process.env.REACT_APP_CLIENT_SECRET_UD,
+
+    // These are the scopes your app is requesting from the ud server.
+    scope: "openid email:optional wallet",
+
+    // This is the url that the auth server will redirect back to after every authorization attempt.
+    redirectUri: "https://stefan1612.github.io/UDPort",
+    // redirectUri: "http://localhost:3000/UDPort",
+  });
+
+  const [a, setA] = useState(1);
+  const [errorMessage, setErrorMessage] = useState("This is the error message");
+  const [whileWaitingForUAUTH, setWhileWaitingForUAUTH] = useState(false);
+
+  const handleLoginButtonClick = (e) => {
+    setErrorMessage(null);
+    uauth.login().catch((error) => {
+      console.error("login error:", error);
+      setErrorMessage("User failed to login.");
+    });
+
+    setImageSrc(pressedButton);
+  };
+
+  const [redirectTo, setRedirectTo] = useState();
+  const [user, setUser] = useState();
+  const [loading, setLoading] = useState(false);
+  const [redirectToLogOut, setRedirectToLogOut] = useState();
+
+  const [udLoginAddress, setUdLoginAddress] = useState();
+  const [udLoginDomain, setUdLoginDomain] = useState();
+
+  useEffect(() => {
+    // Try to exchange authorization code for access and id tokens.
+    uauth
+      .loginCallback()
+      // Successfully logged and cached user in `window.localStorage`
+      .then((response) => {
+        console.log("loginCallback ->", response);
+        setRedirectTo("/profile");
+        setUdLoginAddress(response.authorization.idToken.wallet_address);
+        setUdLoginDomain(response.authorization.idToken.sub);
+      })
+
+      // Failed to exchange authorization code for token.
+      .catch((error) => {
+        console.error("callback error:", error);
+        setRedirectTo("/login?error=" + error.message);
+      });
+  }, []);
+
+  useEffect(() => {
+    uauth
+      .user()
+      .then(setUser)
+      .catch((error) => {
+        console.error("profile error:", error);
+        setRedirectToLogOut("/login?error=" + error.message);
+      });
+  }, []);
+
+  const handleLogoutButtonClick = (e) => {
+    console.log("logging out!");
+    setLoading(true);
+    uauth.logout().catch((error) => {
+      console.error("profile error:", error);
+      setLoading(false);
+    });
+
+    setUdLoginAddress(undefined);
+    /* setAreTokensFetched(false)
+    setAreTokensGeckoInitialized(false) */
+    window.location.reload();
+  };
 
   //handle State
   const [account, setAccount] = useState("");
