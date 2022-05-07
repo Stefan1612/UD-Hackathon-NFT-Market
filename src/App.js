@@ -10,6 +10,7 @@ import MintedTokens from "./Components/MintedTokens";
 import MintForm from "./Components/MintForm";
 import OwnNfts from "./Components/OwnNfts";
 import Header from "./Components/Header";
+import Login from "./Components/Login";
 //abi's
 
 import NFT from "./config/contracts/NFT.json";
@@ -33,6 +34,9 @@ import hoverButton from "./pressed-button.png";
 // const {utils, BigNumber} = require('ethers');
 
 function App() {
+  //handle State
+  const [account, setAccount] = useState("");
+
   const [imageSrc, setImageSrc] = useState(defaultButton);
   function handleMouseEnter() {
     setImageSrc(hoverButton);
@@ -43,16 +47,13 @@ function App() {
   }
 
   const uauth = new UAuth({
-    // These can be copied from the bottom of your app's configuration page on unstoppabledomains.com.
-    clientID: process.env.REACT_APP_CLIENT_ID_UD,
-    clientSecret: process.env.REACT_APP_CLIENT_SECRET_UD,
+    clientID: "16565821-e518-4e38-a688-1950e5e5ba5e",
 
     // These are the scopes your app is requesting from the ud server.
-    scope: "openid email:optional wallet",
+    scope: "openid email wallet",
 
     // This is the url that the auth server will redirect back to after every authorization attempt.
-    redirectUri: "https://stefan1612.github.io/UDPort",
-    // redirectUri: "http://localhost:3000/UDPort",
+    redirectUri: "http://localhost:3000",
   });
 
   const [a, setA] = useState(1);
@@ -86,6 +87,9 @@ function App() {
         console.log("loginCallback ->", response);
         setRedirectTo("/profile");
         setUdLoginAddress(response.authorization.idToken.wallet_address);
+        // console.log(udLoginAddress);
+
+        setAccount(response.authorization.idToken.wallet_address);
         setUdLoginDomain(response.authorization.idToken.sub);
       })
 
@@ -120,8 +124,6 @@ function App() {
     window.location.reload();
   };
 
-  //handle State
-  const [account, setAccount] = useState("");
   // const [nfts, setNfts] = useState([]);
 
   //provider and signer
@@ -547,11 +549,37 @@ function App() {
   function changeFormInputName(e) {
     setFormInput({ ...formInput, name: e.target.value });
   }
+  /*  if (udLoginAddress == undefined) {
+    return (
+      <div
+        className="pages"
+        style={{ height: "100vh", backgroundColor: "black" }}
+      >
+        <div
+          className="text-center"
+          style={{ paddingTop: "28vh", marginRight: "5vw" }}
+        > */
+  {
+    /* <img src={logo}></img> */
+  }
+  /*  </div>
 
+        <div style={{ paddingTop: "2vh", marginLeft: "37vw" }}>
+          <img
+            onMouseEnter={() => handleMouseEnter()}
+            onMouseLeave={() => handleMouseLeave()}
+            src={imageSrc}
+            className="pointer"
+            onClick={() => handleLoginButtonClick()}
+          ></img>
+        </div>
+      </div>
+    );
+  } */
   return (
     <ThemeProvider theme={theme}>
       <Box>
-        <Header />
+        <Header udLoginDomain={udLoginDomain} />
         {/*  <Box
           id="background"
           marginTop={"91vh"}
@@ -570,6 +598,18 @@ function App() {
           <Route
             exact
             path="/"
+            element={
+              <Login
+                handleMouseEnter={handleMouseEnter}
+                handleMouseLeave={handleMouseLeave}
+                imageSrc={imageSrc}
+                handleLoginButtonClick={handleLoginButtonClick}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/Home"
             element={
               <Home
                 account={account}
@@ -619,6 +659,7 @@ function App() {
         </Routes>
       </Box>
       {/*    </Box> */}
+      <button onClick={() => console.log(account)}></button>
     </ThemeProvider>
   );
 }
