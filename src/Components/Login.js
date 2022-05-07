@@ -20,6 +20,7 @@ const Login = ({
 
       <div style={{ paddingTop: "2vh", marginLeft: "37vw" }}>
         <img
+          alt={"login Button"}
           onMouseEnter={() => handleMouseEnter()}
           onMouseLeave={() => handleMouseLeave()}
           src={imageSrc}
