@@ -10,7 +10,6 @@ import MintedTokens from "./Components/MintedTokens";
 import MintForm from "./Components/MintForm";
 import OwnNfts from "./Components/OwnNfts";
 import Header from "./Components/Header";
-import Login from "./Components/Login";
 //abi's
 
 import NFT from "./config/contracts/NFT.json";
@@ -551,7 +550,8 @@ function App() {
   function changeFormInputName(e) {
     setFormInput({ ...formInput, name: e.target.value });
   }
-  if (udLoginAddress == undefined) {
+  // eslint-disable-next-line
+  if (udLoginAddress === undefined) {
     return (
       <div
         className="pages"
