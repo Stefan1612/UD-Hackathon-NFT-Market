@@ -209,6 +209,23 @@ export default function PrimarySearchAppBar(props) {
     props.handleLogoutButtonClick();
     localStorage.clear();
   }
+  function handleStorageUdLoginDomain() {
+    console.log("handleSotrageUdLoginDomain got triggered");
+    if (localStorage.getItem("UdLoginDomain") !== null) {
+      return localStorage
+        .getItem("UdLoginDomain")
+        .slice(1, localStorage.getItem("UdLoginDomain").length - 1);
+    }
+  }
+  function handleStorageUdLoginAddress() {
+    console.log("handleSotrageUdLoginDomain got triggered");
+    if (localStorage.getItem("udLoginAddress") !== null) {
+      return localStorage
+        .getItem("udLoginAddress")
+        .slice(1, localStorage.getItem("udLoginAddress").length - 1);
+    }
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -333,12 +350,7 @@ export default function PrimarySearchAppBar(props) {
               Associated Address:{" "}
               {props.udLoginAddress !== ""
                 ? props.udLoginAddress
-                : localStorage
-                    .getItem("udLoginAddress")
-                    .slice(
-                      1,
-                      localStorage.getItem("udLoginAddress").length - 1
-                    )}
+                : handleStorageUdLoginAddress()}
               &nbsp;
             </Box>
           </Box>
@@ -346,9 +358,7 @@ export default function PrimarySearchAppBar(props) {
             <Box className="UDLogOut">
               {props.udLoginDomain !== ""
                 ? props.udLoginDomain
-                : localStorage
-                    .getItem("UdLoginDomain")
-                    .slice(1, localStorage.getItem("UdLoginDomain").length - 1)}
+                : handleStorageUdLoginDomain()}
             </Box>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>

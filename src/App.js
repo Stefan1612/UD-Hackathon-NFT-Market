@@ -52,7 +52,7 @@ function App() {
     scope: "openid email wallet",
 
     // This is the url that the auth server will redirect back to after every authorization attempt.
-    redirectUri: "https://netlify--euphonious-strudel-edd347.netlify.app/",
+    redirectUri: "http://localhost:3000",
   });
 
   // eslint-disable-next-line
