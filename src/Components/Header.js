@@ -19,7 +19,7 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import LogoSimpleBlock from "./assets/LogoMakr-9qZ27k.png";
 
 // menu
-
+import { Navigate } from "react-router-dom";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import Grow from "@mui/material/Grow";
 import Paper from "@mui/material/Paper";
@@ -203,6 +203,12 @@ export default function PrimarySearchAppBar(props) {
     prevOpen.current = open;
   }, [open]);
   //menu end
+
+  function handleCloseAndLogout() {
+    // handleClose();
+    props.handleLogoutButtonClick();
+    localStorage.clear();
+  }
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -282,7 +288,15 @@ export default function PrimarySearchAppBar(props) {
                                 Owned Nft list
                               </MenuItem>
                             </Link>
-                            <MenuItem onClick={handleClose}>Logout</MenuItem>
+                            <Link
+                              to="/"
+                              className="Nav "
+                              style={{ textDecoration: "none", color: "white" }}
+                            >
+                              <MenuItem onClick={() => handleCloseAndLogout()}>
+                                Logout{" "}
+                              </MenuItem>
+                            </Link>
                           </MenuList>
                         </ClickAwayListener>
                       </Paper>
@@ -314,6 +328,9 @@ export default function PrimarySearchAppBar(props) {
             style={{ height: "4vh" }}
           />
           <Box sx={{ flexGrow: 1 }} />
+          <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <Box>Associated Address: {props.udLoginAddress} &nbsp;</Box>
+          </Box>
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <Box className="UDLogOut">{props.udLoginDomain}</Box>
           </Box>

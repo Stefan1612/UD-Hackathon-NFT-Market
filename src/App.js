@@ -53,7 +53,7 @@ function App() {
     scope: "openid email wallet",
 
     // This is the url that the auth server will redirect back to after every authorization attempt.
-    redirectUri: "http://localhost:3000",
+    redirectUri: "https://netlify--euphonious-strudel-edd347.netlify.app/",
   });
 
   // eslint-disable-next-line
@@ -215,7 +215,7 @@ function App() {
 
   function handleChainChanged(_chainId) {
     // We recommend reloading the page, unless you must do otherwise
-    window.location.reload();
+    /* window.location.reload(); */
   }
 
   //on account change
@@ -238,7 +238,7 @@ function App() {
       console.log("Please connect to MetaMask.");
     } else if (accounts[0] !== account) {
       setAccount(accounts[0]);
-      window.location.reload();
+      /* window.location.reload(); */
     }
   }
   //network
@@ -551,7 +551,7 @@ function App() {
   function changeFormInputName(e) {
     setFormInput({ ...formInput, name: e.target.value });
   }
-  /*  if (udLoginAddress == undefined) {
+  if (udLoginAddress == undefined) {
     return (
       <div
         className="pages"
@@ -560,15 +560,23 @@ function App() {
         <div
           className="text-center"
           style={{ paddingTop: "28vh", marginRight: "5vw" }}
-        > */
-  // eslint-disable-next-line
-  {
-    /* <img src={logo}></img> */
-  }
-  /*  </div>
+        >
+          {
+            // eslint-disable-next-line
+          }
+          {/* <img src={logo}></img> */}
+        </div>
 
-        <div style={{ paddingTop: "2vh", marginLeft: "37vw" }}>
+        <div
+          style={{
+            paddingTop: "2vh",
+            margin: "auto",
+            textAlign: "center",
+            marginTop: "10vh",
+          }}
+        >
           <img
+            alt="UnstoppableLoginButton"
             onMouseEnter={() => handleMouseEnter()}
             onMouseLeave={() => handleMouseLeave()}
             src={imageSrc}
@@ -578,11 +586,15 @@ function App() {
         </div>
       </div>
     );
-  } */
+  }
   return (
     <ThemeProvider theme={theme}>
       <Box>
-        <Header udLoginDomain={udLoginDomain} />
+        <Header
+          udLoginDomain={udLoginDomain}
+          udLoginAddress={udLoginAddress}
+          handleLogoutButtonClick={handleLogoutButtonClick}
+        />
         {/*  <Box
           id="background"
           marginTop={"91vh"}
@@ -598,7 +610,7 @@ function App() {
         />
 
         <Routes>
-          <Route
+          {/*  <Route
             exact
             path="/"
             element={
@@ -609,10 +621,10 @@ function App() {
                 handleLoginButtonClick={handleLoginButtonClick}
               />
             }
-          />
+          /> */}
           <Route
             exact
-            path="/Home"
+            path="/"
             element={
               <Home
                 account={account}
@@ -639,6 +651,7 @@ function App() {
                 changeFormInputName={changeFormInputName}
                 fileURL={fileURL}
                 createMarket={createMarket}
+                FirstLoadGettingAccount={FirstLoadGettingAccount}
               />
             }
           />
@@ -662,7 +675,7 @@ function App() {
         </Routes>
       </Box>
       {/*    </Box> */}
-      <button onClick={() => console.log(account)}></button>
+      {/*   <button onClick={() => console.log(account)}></button> */}
     </ThemeProvider>
   );
 }
