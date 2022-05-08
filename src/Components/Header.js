@@ -329,10 +329,27 @@ export default function PrimarySearchAppBar(props) {
           />
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Box>Associated Address: {props.udLoginAddress} &nbsp;</Box>
+            <Box>
+              Associated Address:{" "}
+              {props.udLoginAddress !== ""
+                ? props.udLoginAddress
+                : localStorage
+                    .getItem("udLoginAddress")
+                    .slice(
+                      1,
+                      localStorage.getItem("udLoginAddress").length - 1
+                    )}
+              &nbsp;
+            </Box>
           </Box>
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Box className="UDLogOut">{props.udLoginDomain}</Box>
+            <Box className="UDLogOut">
+              {props.udLoginDomain !== ""
+                ? props.udLoginDomain
+                : localStorage
+                    .getItem("UdLoginDomain")
+                    .slice(1, localStorage.getItem("UdLoginDomain").length - 1)}
+            </Box>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton

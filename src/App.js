@@ -76,8 +76,8 @@ function App() {
   // eslint-disable-next-line
   const [redirectToLogOut, setRedirectToLogOut] = useState();
   // eslint-disable-next-line
-  const [udLoginAddress, setUdLoginAddress] = useState();
-  const [udLoginDomain, setUdLoginDomain] = useState();
+  const [udLoginAddress, setUdLoginAddress] = useState("");
+  const [udLoginDomain, setUdLoginDomain] = useState("");
 
   useEffect(() => {
     // Try to exchange authorization code for access and id tokens.
@@ -92,6 +92,18 @@ function App() {
 
         setAccount(response.authorization.idToken.wallet_address);
         setUdLoginDomain(response.authorization.idToken.sub);
+        localStorage.setItem(
+          "account",
+          JSON.stringify(response.authorization.idToken.wallet_address)
+        );
+        localStorage.setItem(
+          "udLoginAddress",
+          JSON.stringify(response.authorization.idToken.wallet_address)
+        );
+        localStorage.setItem(
+          "UdLoginDomain",
+          JSON.stringify(response.authorization.idToken.sub)
+        );
       })
 
       // Failed to exchange authorization code for token.
@@ -214,7 +226,7 @@ function App() {
 
   function handleChainChanged(_chainId) {
     // We recommend reloading the page, unless you must do otherwise
-    /* window.location.reload(); */
+    window.location.reload();
   }
 
   //on account change
@@ -237,7 +249,7 @@ function App() {
       console.log("Please connect to MetaMask.");
     } else if (accounts[0] !== account) {
       setAccount(accounts[0]);
-      /* window.location.reload(); */
+      window.location.reload();
     }
   }
   //network
@@ -551,7 +563,7 @@ function App() {
     setFormInput({ ...formInput, name: e.target.value });
   }
   // eslint-disable-next-line
-  if (udLoginAddress === undefined) {
+  if (udLoginAddress === "" && localStorage.getItem("UdLoginDomain") === null) {
     return (
       <div
         className="pages"
