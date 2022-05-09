@@ -2,7 +2,7 @@
 
 ## Hackathon's submissions requirements
 - Project Name: NFT Marketplace
-- Unstoppable Code: [Link](https://github.com/Stefan1612/UD-Hackathon-NFT-Market/blob/master/src/App.js)
+- Unstoppable Code: [Link](https://github.com/Stefan1612/UD-Hackathon-NFT-Market/blob/master/src/App.js), [Link](https://github.com/Stefan1612/UD-Hackathon-NFT-Market/blob/master/src/Components/Header.js)
 - Working Website: [Link](https://euphonious-strudel-edd347.netlify.app/)
 - Demo video: [Link](https://www.youtube.com/watch?v=LESSFeEVHAw)
 - Eth Address: 0xCF4a75825f40b46bEdca7aBFC6bfF63a50752724
