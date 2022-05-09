@@ -1,7 +1,7 @@
 # NFT-Marketplace Status/Issues/Ideas
 
 ## Hackathon's submissions requirements
-- Project Name: NFT-Market
+- Project Name: NFT Marketplace
 - Unstoppable Code: 
 - Working Website: [Link]("https://euphonious-strudel-edd347.netlify.app/")
 - Demo video: [Link]("https://www.youtube.com/watch?v=LESSFeEVHAw")
