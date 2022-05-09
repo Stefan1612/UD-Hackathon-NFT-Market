@@ -2,9 +2,9 @@
 
 ## Hackathon's submissions requirements
 - Project Name: NFT Marketplace
-- Unstoppable Code: [Link]("https://github.com/Stefan1612/UD-Hackathon-NFT-Market/blob/master/src/App.js")
-- Working Website: [Link]("https://euphonious-strudel-edd347.netlify.app/")
-- Demo video: [Link]("https://www.youtube.com/watch?v=LESSFeEVHAw")
+- Unstoppable Code: [Link](https://github.com/Stefan1612/UD-Hackathon-NFT-Market/blob/master/src/App.js)
+- Working Website: [Link](https://euphonious-strudel-edd347.netlify.app/)
+- Demo video: [Link](https://www.youtube.com/watch?v=LESSFeEVHAw)
 - Eth Address: 0xCF4a75825f40b46bEdca7aBFC6bfF63a50752724
 - Discord Id: 353599460145627136
 - Discord Name: SimpleBlock#6604
@@ -18,7 +18,7 @@ The NFT Marketplace is currently running and fully functional on Rinkeby at
 
 2. NFT:
 
-The Website is online and running at [Website]("https://euphonious-strudel-edd347.netlify.app/")
+The Website is online and running at [Website](https://euphonious-strudel-edd347.netlify.app/)
 
 ## Approach
 
