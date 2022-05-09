@@ -16,9 +16,7 @@ The NFT Marketplace is currently running and fully functional on Rinkeby at
 
 2. NFT:
 
-The Website is online and running at [Website]()
-
-## Video Demo
+The Website is online and running at [Website]("https://euphonious-strudel-edd347.netlify.app/")
 
 ## Approach
 
